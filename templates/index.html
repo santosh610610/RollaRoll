@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in" style="text-align: center; padding: 20px 0;">
+    <div style="max-width: 1024px; margin: 10px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+
+        <p style="font-size: 1.1rem; color: var(--dark-color); margin-bottom: 30px;">
+            RollaRoll makes it easy to manage attendance for all your music classes
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 50px; margin-top: 10px; justify-content: center;">
+            <a href="{{ url_for('students') }}" class="card" style="flex: 1; text-align: center; min-width: 200px; text-decoration: none; color: inherit;">
+                <div style="font-size: 3rem; margin-bottom: 15px; color: var(--primary-color);">👥</div>
+                <h3 style="margin: 0 0 10px 0; color: var(--dark-color);">Students</h3>
+                <p style="margin: 0; color: #666;">Add and manage your students</p>
+            </a>
+            
+            <a href="{{ url_for('classes') }}" class="card" style="flex: 1; text-align: center; min-width: 200px; text-decoration: none; color: inherit;">
+                <div style="font-size: 3rem; margin-bottom: 15px; color: var(--secondary-color);">🎵</div>
+                <h3 style="margin: 0 0 10px 0; color: var(--dark-color);">Classes</h3>
+                <p style="margin: 0; color: #666;">Create and manage music classes</p>
+            </a>
+            
+            <a href="{{ url_for('attendance') }}" class="card" style="flex: 1; text-align: center; min-width: 200px; text-decoration: none; color: inherit;">
+                <div style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-color);">✓</div>
+                <h3 style="margin: 0 0 10px 0; color: var(--dark-color);">Attendance</h3>
+                <p style="margin: 0; color: #666;">Take and view attendance records</p>
+            </a>
+        </div>
+        
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px dashed #eee;">
+            <p>New to RollaRoll? Check out our <a href="{{ url_for('help') }}" style="color: var(--secondary-color); font-weight: bold;">Help Guide</a> to get started!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="text-align: center; color: var(--primary-color); font-family: 'Borel', cursive; font-size: 2.5rem;">
+        How to Use RollaRoll
+    </h1>
+    
+    <div class="help-section">
+        <h2>What is RollaRoll?</h2>
+        <p>
+            RollaRoll is a simple, colorful attendance tracking application designed specifically for music classes. 
+            It helps instructors keep track of which students attend which classes, with options to mark students as 
+            present, absent, late, or excused.
+        </p>
+    </div>
+    
+    <div class="help-section">
+        <h2>Getting Started</h2>
+        <ol style="line-height: 1.8;">
+            <li><strong>Add Students</strong> - First, add all your students to the system</li>
+            <li><strong>Create Classes</strong> - Create different music classes (Piano, Guitar, Violin, etc.)</li>
+            <li><strong>Assign Students to Classes</strong> - For each class, assign the specific students who attend</li>
+            <li><strong>Take Attendance</strong> - Record attendance for each class session</li>
+            <li><strong>View Records</strong> - Check past attendance records anytime</li>
+        </ol>
+    </div>
+    
+    <div class="help-section">
+        <h2>Step-by-Step Guide</h2>
+        
+        <h3 style="color: var(--secondary-color);">1. Managing Students</h3>
+        <p>
+            Click on the <strong>Students</strong> menu item to view all students. Use the "Add New Student" button 
+            to add students to the system. Each student needs only a name to be added.
+        </p>
+        
+        <h3 style="color: var(--secondary-color);">2. Managing Classes</h3>
+        <p>
+            Click on the <strong>Classes</strong> menu item to view and manage your music classes. Use the "Add New Class" 
+            button to create a new class (e.g., "Piano Beginner", "Guitar Advanced").
+        </p>
+        
+        <h3 style="color: var(--secondary-color);">3. Assigning Students to Classes</h3>
+        <p>
+            From the Classes page, click the <strong>Manage Students</strong> button next to a class. This allows you to 
+            select which students attend this specific class. Students can be in multiple classes.
+        </p>
+        
+        <h3 style="color: var(--secondary-color);">4. Taking Attendance</h3>
+        <p>
+            From the Classes page, click the <strong>Take Attendance</strong> button for a class. Select the date and 
+            mark each student as:
+        </p>
+        <ul>
+            <li><strong>Present</strong> - Student attended class</li>
+            <li><strong>Absent</strong> - Student did not attend</li>
+            <li><strong>Late</strong> - Student arrived late</li>
+            <li><strong>Excused</strong> - Student had an excused absence</li>
+        </ul>
+        
+        <h3 style="color: var(--secondary-color);">5. Viewing Attendance Records</h3>
+        <p>
+            Click on the <strong>Attendance</strong> menu item to see all attendance records. You can view details 
+            of any past attendance session by clicking "View Details".
+        </p>
+    </div>
+    
+    <div class="help-section">
+        <h2>Tips for Using RollaRoll</h2>
+        <ul>
+            <li>Add all students before creating classes for easier assignment</li>
+            <li>Take attendance regularly to maintain accurate records</li>
+            <li>Use the "Manage Students" feature whenever class rosters change</li>
+            <li>Check past attendance records to identify patterns</li>
+        </ul>
+    </div>
+    
+    <div class="help-section">
+    <h3>RollaRoll is built using the <a href="https://zencoder.ai/">ZenCoder</a> AI tool</h2>
+
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+{% endblock %}

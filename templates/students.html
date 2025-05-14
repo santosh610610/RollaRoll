@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">Students</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="{{ url_for('add_student') }}" class="btn btn-primary">
+            <span style="margin-right: 5px;">➕</span> Add New Student
+        </a>
+    </div>
+
+    {% if students %}
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Added On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 40px 20px;">
+        <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;">👥</div>
+        <h3 style="color: var(--dark-color); margin-top: 0;">No Students Yet</h3>
+        <p>You haven't added any students yet. Click the button above to add your first student.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

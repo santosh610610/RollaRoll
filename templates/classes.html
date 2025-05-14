@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">Music Classes</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="{{ url_for('add_class') }}" class="btn btn-primary">
+            <span style="margin-right: 5px;">➕</span> Add New Class
+        </a>
+    </div>
+
+    {% if classes %}
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class in classes %}
+                <tr>
+                    <td>{{ class.name }}</td>
+                    <td>{{ class.created_at }}</td>
+                    <td>
+                        <a href="{{ url_for('manage_class_students', class_id=class.id) }}" class="btn" style="background-color: var(--secondary-color);">
+                            <span style="margin-right: 5px;">👥</span> Manage Students
+                        </a>
+                        <a href="{{ url_for('take_attendance', class_id=class.id) }}" class="btn" style="background-color: var(--accent-color); color: var(--dark-color);">
+                            <span style="margin-right: 5px;">✓</span> Take Attendance
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 40px 20px;">
+        <div style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;">🎵</div>
+        <h3 style="color: var(--dark-color); margin-top: 0;">No Classes Yet</h3>
+        <p>You haven't added any music classes yet. Click the button above to add your first class.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

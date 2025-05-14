@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RollaRoll - Attendance Tracker</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Font: Borel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <style>
+        /* Basic styling if CSS file is not loaded */
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --accent-color: #FFE66D;
+            --dark-color: #1A535C;
+            --light-color: #F7FFF7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        .app-title {
+            font-family: 'Borel', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 0;
+            padding: 20px 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .app-subtitle {
+            text-align: center;
+            color: var(--dark-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+        
+        .container {
+            width: 85%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            padding: 0 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 15px;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background: #3db8af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        table, th, td {
+            border: none;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(78, 205, 196, 0.1);
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+        
+        .flash-messages {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .flash-success {
+            background-color: rgba(78, 205, 196, 0.2);
+            color: var(--dark-color);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .flash-error {
+            background-color: rgba(255, 107, 107, 0.2);
+            color: #d32f2f;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="text"]:focus, input[type="date"]:focus, select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container" style="background-color: var(--light-color); padding-top: 20px;">
+        <h1 class="app-title">RollaRoll</h1>
+        <p class="app-subtitle">Track Attendance with Ease!</p>
+    </div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('students') }}">Students</a></li>
+                <li><a href="{{ url_for('classes') }}">Classes</a></li>
+                <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+                <li><a href="{{ url_for('help') }}">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-messages flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 25px; background: var(--dark-color); color: white;">
+        <p>
+            <span style="font-family: 'Borel', cursive; font-size: 1.2rem; color: var(--accent-color);">RollaRoll</span> &copy; <span id="current-year">2023</span> - A simple, colorful tool for tracking attendance in music classes
+        </p>
+    </footer>
+    
+    <script>
+        // Add current year to footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            document.getElementById('current-year').textContent = year;
+        });
+    </script>
+</body>
+</html>

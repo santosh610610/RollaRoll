@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">
+        Take Attendance: {{ class_info.name }}
+    </h1>
+
+    <div class="card">
+        <form method="POST">
+            <div style="margin-bottom: 25px;">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="{{ today }}" required>
+            </div>
+            
+            {% if students %}
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--secondary-color);">Student Attendance</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>
+                                <select name="status_{{ student.id }}" required>
+                                    <option value="">-- Select Status --</option>
+                                    <option value="present">Present</option>
+                                    <option value="absent">Absent</option>
+                                    <option value="late">Late</option>
+                                    <option value="excused">Excused</option>
+                                </select>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <a href="{{ url_for('attendance') }}" class="btn" style="background-color: #9e9e9e;">Cancel</a>
+                <button type="submit" class="btn" style="background-color: var(--accent-color); color: var(--dark-color);">
+                    <span style="margin-right: 5px;">✓</span> Save Attendance
+                </button>
+            </div>
+            {% else %}
+            <div style="padding: 30px; background-color: #fff3cd; border-radius: 8px; margin: 20px 0; text-align: center;">
+                <div style="font-size: 3rem; color: #856404; margin-bottom: 15px;">⚠️</div>
+                <h3 style="color: #856404; margin-top: 0;">No Students Assigned</h3>
+                <p>There are no students assigned to this class. Please add students to this class first.</p>
+                <a href="{{ url_for('manage_class_students', class_id=class_info.id) }}" class="btn" style="background-color: var(--secondary-color); margin-top: 15px;">
+                    <span style="margin-right: 5px;">👥</span> Manage Class Students
+                </a>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}

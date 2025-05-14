@@ -1,0 +1,21 @@
+[
+  {
+    "id": "e1c067af-9712-4d9d-b3e1-3b3c5f6a9b81",
+    "name": "test-tech",
+    "created_at": "2025-05-11 12:27:50",
+    "student_ids": [
+      "9a1a08cf-d4e5-4920-9e07-e5e506377750",
+      "e1b5d3e5-a6de-4572-a3fd-ec3c35666b54",
+      "dc0d2060-41f4-4b16-a7f7-dfb59d2227a3"
+    ]
+  },
+  {
+    "id": "6c56931e-f10d-4531-9bcb-6d93860ae0b3",
+    "name": "Nocode",
+    "created_at": "2025-05-11 12:33:41",
+    "student_ids": [
+      "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+      "dc0d2060-41f4-4b16-a7f7-dfb59d2227a3"
+    ]
+  }
+]

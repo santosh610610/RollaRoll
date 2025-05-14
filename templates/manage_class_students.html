@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">
+        Manage Students for: {{ class_info.name }}
+    </h1>
+
+    <div class="card">
+        <form method="POST">
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--secondary-color); margin-top: 0;">Select students to add to this class:</h3>
+                
+                {% if students %}
+                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #eee; padding: 15px; background-color: #f9f9f9; border-radius: 8px;">
+                    {% for student in students %}
+                    <div style="margin: 10px 0; padding: 10px; border-bottom: 1px solid #eee; transition: background-color 0.2s ease;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" name="student_ids" value="{{ student.id }}" 
+                                {% if student.id in class_info.student_ids %}checked{% endif %}
+                                style="margin-right: 15px; transform: scale(1.3);">
+                            <span style="font-size: 1.1rem;">{{ student.name }}</span>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div style="text-align: center; padding: 30px 20px; background-color: #fff3cd; border-radius: 8px;">
+                    <p>No students available. <a href="{{ url_for('add_student') }}" style="color: var(--primary-color); font-weight: bold;">Add students</a> first.</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <a href="{{ url_for('classes') }}" class="btn" style="background-color: #9e9e9e;">Cancel</a>
+                <button type="submit" class="btn" style="background-color: var(--secondary-color);">
+                    <span style="margin-right: 5px;">💾</span> Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card" style="margin-top: 30px;">
+        <div class="card-header">
+            <h2>Current Students in Class</h2>
+        </div>
+        
+        {% set student_count = namespace(count=0) %}
+        
+        <div style="padding: 10px;">
+            {% for student in students %}
+                {% if student.id in class_info.student_ids %}
+                    {% set student_count.count = student_count.count + 1 %}
+                    <div style="padding: 12px; margin: 8px 0; background-color: rgba(78, 205, 196, 0.1); border-radius: 8px; border-left: 4px solid var(--secondary-color);">
+                        <span style="margin-right: 10px;">👤</span> {{ student.name }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% if student_count.count == 0 %}
+            <div style="text-align: center; padding: 30px 20px;">
+                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;">👥</div>
+                <h3 style="color: var(--dark-color); margin-top: 0;">No Students Assigned</h3>
+                <p>No students are currently assigned to this class. Use the form above to add students.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">
+        Attendance Details
+    </h1>
+    
+    <div class="card">
+        <div class="card-header" style="text-align: center;">
+            <h2 style="margin: 0; color: var(--dark-color);">{{ class_name }}</h2>
+            <p style="margin: 5px 0 0 0; font-size: 1.2rem; color: var(--secondary-color);">{{ date }}</p>
+        </div>
+
+        {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.student_name }}</td>
+                    <td>
+                        {% if record.status == 'present' %}
+                        <span style="color: #4CAF50; font-weight: bold; display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-size: 1.2rem;">✅</span> Present
+                        </span>
+                        {% elif record.status == 'absent' %}
+                        <span style="color: #F44336; font-weight: bold; display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-size: 1.2rem;">❌</span> Absent
+                        </span>
+                        {% elif record.status == 'late' %}
+                        <span style="color: #FF9800; font-weight: bold; display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-size: 1.2rem;">⏰</span> Late
+                        </span>
+                        {% elif record.status == 'excused' %}
+                        <span style="color: #2196F3; font-weight: bold; display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-size: 1.2rem;">📝</span> Excused
+                        </span>
+                        {% else %}
+                        {{ record.status }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div style="text-align: center; padding: 30px 20px;">
+            <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;">📋</div>
+            <h3 style="color: var(--dark-color); margin-top: 0;">No Records Found</h3>
+            <p>No attendance records found for this session.</p>
+        </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{{ url_for('attendance') }}" class="btn" style="background-color: var(--secondary-color);">
+                <span style="margin-right: 5px;">←</span> Back to Attendance
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+[
+  {
+    "id": "514b26d9-28cd-43d1-aab1-f1405d5379b9",
+    "class_id": "e1c067af-9712-4d9d-b3e1-3b3c5f6a9b81",
+    "date": "2025-05-11",
+    "records": [
+      {
+        "student_id": "9a1a08cf-d4e5-4920-9e07-e5e506377750",
+        "status": "present"
+      },
+      {
+        "student_id": "e1b5d3e5-a6de-4572-a3fd-ec3c35666b54",
+        "status": "present"
+      },
+      {
+        "student_id": "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+        "status": "late"
+      }
+    ]
+  },
+  {
+    "id": "ce053085-15e5-499a-b076-46692a71a295",
+    "class_id": "e1c067af-9712-4d9d-b3e1-3b3c5f6a9b81",
+    "date": "2025-05-11",
+    "records": [
+      {
+        "student_id": "9a1a08cf-d4e5-4920-9e07-e5e506377750",
+        "status": "excused"
+      },
+      {
+        "student_id": "e1b5d3e5-a6de-4572-a3fd-ec3c35666b54",
+        "status": "absent"
+      },
+      {
+        "student_id": "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+        "status": "present"
+      }
+    ]
+  },
+  {
+    "id": "281181b2-9fa4-45fd-a0e8-6beb53dc86c4",
+    "class_id": "e1c067af-9712-4d9d-b3e1-3b3c5f6a9b81",
+    "date": "2025-05-10",
+    "records": [
+      {
+        "student_id": "9a1a08cf-d4e5-4920-9e07-e5e506377750",
+        "status": "absent"
+      },
+      {
+        "student_id": "e1b5d3e5-a6de-4572-a3fd-ec3c35666b54",
+        "status": "present"
+      },
+      {
+        "student_id": "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+        "status": "late"
+      }
+    ]
+  },
+  {
+    "id": "dfc325c4-5f1a-40b3-a880-f35aa2330a27",
+    "class_id": "6c56931e-f10d-4531-9bcb-6d93860ae0b3",
+    "date": "2025-05-11",
+    "records": [
+      {
+        "student_id": "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+        "status": "absent"
+      },
+      {
+        "student_id": "3a802601-598e-4652-a7a8-3cf88766925d",
+        "status": "present"
+      }
+    ]
+  },
+  {
+    "id": "bcf7c223-f521-41d9-90c9-bb20f392d9b4",
+    "class_id": "6c56931e-f10d-4531-9bcb-6d93860ae0b3",
+    "date": "2025-05-09",
+    "records": [
+      {
+        "student_id": "ac66138b-1680-4d32-ae3f-7c80775cb1fd",
+        "status": "present"
+      },
+      {
+        "student_id": "dc0d2060-41f4-4b16-a7f7-dfb59d2227a3",
+        "status": "excused"
+      }
+    ]
+  }
+]

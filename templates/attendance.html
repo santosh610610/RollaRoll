@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <h1 style="color: var(--primary-color); font-family: 'Borel', cursive; text-align: center;">Attendance Records</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Take New Attendance</h2>
+        </div>
+        
+        {% if classes %}
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+            {% for class in classes %}
+            <a href="{{ url_for('take_attendance', class_id=class.id) }}" class="btn" style="background-color: var(--accent-color); color: var(--dark-color);">
+                <span style="margin-right: 5px;">🎵</span> {{ class.name }}
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; padding: 20px;">
+            <p>No classes available. <a href="{{ url_for('add_class') }}" style="color: var(--secondary-color); font-weight: bold;">Add a class</a> first to take attendance.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="card" style="margin-top: 30px;">
+        <div class="card-header">
+            <h2>Previous Attendance Records</h2>
+        </div>
+        
+        {% if attendance %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Class</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in attendance %}
+                <tr>
+                    <td>{{ session.date }}</td>
+                    <td>
+                        {% for class in classes %}
+                            {% if class.id == session.class_id %}
+                                {{ class.name }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('view_attendance', session_id=session.id) }}" class="btn" style="background-color: var(--secondary-color);">
+                            <span style="margin-right: 5px;">👁️</span> View Details
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div style="text-align: center; padding: 30px 20px;">
+            <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;">📋</div>
+            <h3 style="color: var(--dark-color); margin-top: 0;">No Records Yet</h3>
+            <p>You haven't taken any attendance yet. Select a class above to start recording attendance.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
