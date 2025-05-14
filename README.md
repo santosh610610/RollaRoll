@@ -1,6 +1,6 @@
 # RollaRoll - Colorful Music Class Attendance Tracker
 
-A vibrant, web-based attendance tracking system designed specifically for music classes.
+A vibrant and simple, web-based attendance tracking system designed for tutors to manage students and classes.
 
 ![RollaRoll](https://img.shields.io/badge/RollaRoll-Attendance%20Tracker-FF6B6B)
 
